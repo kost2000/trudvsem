@@ -7,3 +7,5 @@
 
 
 Под Windows проверена работоспособность под Cygwin (https://cygwin.com/install.html). При установке дополнительно установить пакет Curl
+
+Электропочта: kost2000 [at] yandex.ru
