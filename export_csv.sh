@@ -26,5 +26,6 @@ if [ "0" != "${#DIFF_OUTPUT}" ]; then
     echo "============================================" >>diff.txt
     echo $TIME >> diff.txt
     echo "============================================" >>diff.txt
-    echo $DIFF_OUTPUT >> diff.txt
+    echo "$(grep -v -f $log.old $log)" >> diff.txt
+
 fi
