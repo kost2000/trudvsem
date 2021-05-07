@@ -2,10 +2,12 @@
 
 # Требуется установить xmlstarlet
 # Выгрузка в тектовый файл statsus.csv данных из xml-файлов в текущей директории информацию: номер заявления, дата заяявления, статус, дате статуса, ФИО
+# И сравнение предыдущей выгрузки с текущей, если есть разница записываем изменения в diff.txt (типа лог)
 
 DIR=.
-log=statsus.csv
-rm $log
+log=status.csv
+mv $log $log.old
+
 IFS=$'\n'
 for file in `find $DIR -maxdepth 1 -type f -name "*.xml"`
 do
@@ -14,3 +16,12 @@ dat=$(xmlstarlet sel -t -m //requestClientJobless -v requestNum -o ";" -v reques
 #mv "$file" "$new"
 echo $dat >> $log
 done
+
+DIFF_OUTPUT="$(diff  $log $log.old)"
+if [ "0" != "${#DIFF_OUTPUT}" ]; then
+    TIME=$(date +"%d/%m/%Y %T")
+    echo "============================================" >>diff.txt
+    echo $TIME >> diff.txt
+    echo "============================================" >>diff.txt
+    echo $DIFF_OUTPUT >> diff.txt
+fi
