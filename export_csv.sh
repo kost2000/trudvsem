@@ -19,6 +19,9 @@ done
 
 DIFF_OUTPUT="$(diff  $log $log.old)"
 if [ "0" != "${#DIFF_OUTPUT}" ]; then
+    echo "= = = = = = = = = = = = = = = = ="
+    echo "= = = = Есть изменения! = = = = ="
+    echo "= = = = = = = = = = = = = = = = ="
     TIME=$(date +"%d/%m/%Y %T")
     echo "============================================" >>diff.txt
     echo $TIME >> diff.txt
